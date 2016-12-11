@@ -6,7 +6,7 @@
 #    By: rchoquer <rchoquer@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/05 04:09:13 by rchoquer          #+#    #+#              #
-#    Updated: 2016/12/11 09:36:03 by rchoquer         ###   ########.fr        #
+#    Updated: 2016/12/11 10:45:11 by rchoquer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ LIB_PATH		=	libft
 LIB				=	$(LIB_PATH)/libft.a
 LIB_LINK		=	-L $(LIB_PATH) -lft
 
-SRC_NAME		=	main.c
+SRC_NAME		=	process.c	drawing.c
 
 OBJ_NAME		=	$(SRC_NAME:.c=.o)
 INC_NAME		=	fdf.h
