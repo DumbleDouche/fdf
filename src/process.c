@@ -6,7 +6,7 @@
 /*   By: rchoquer <rchoquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/11 10:35:55 by rchoquer          #+#    #+#             */
-/*   Updated: 2016/12/11 11:41:35 by rchoquer         ###   ########.fr       */
+/*   Updated: 2016/12/11 18:18:17 by rchoquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,29 +27,32 @@ int				ft_exit(STATUS current)
 	return (0);
 }
 
-t_info			*setup(t_info *info)
+t_env			setup(void)
 {
-	if (!(info = (t_info *)malloc(sizeof(t_info))))
-		ft_exit(ERROR);
-	if ((info->token = mlx_init())
-	&& (info->window = mlx_new_window(info->token, 500, 500, "Mon FDF")))
-		return info;
-	exit (-1);
-	return (info);
+	t_env		e;
+
+	e.size.x = 800;
+	e.size.y = 800;
+	if (!(e.mlx = mlx_init())
+	|| !(e.win = mlx_new_window(e.mlx, e.size.x, e.size.y, "Mon FDF")))
+		exit (-1);
+	return (e);
 }
 
 int				main(int argc, char **argv)
 {
-	t_info		*info;
+	t_env		e;
 	int			*array;
+	t_size		size;
 
 	// if (argc != 2)
-	// 	ft_exit(BADARG, info);
-	// (void)argc;
-	// (void)argv;
-	
-	info = setup(info);
-	draw(info);
-	free(info);
+	// 	ft_exit(BADARG, e);
+	(void)argc;
+	(void)argv;
+	size.x = 10;
+	size.y = 10;
+	array = 0;
+	e = setup();
+	draw(e, size);
 	return (0);
 }
