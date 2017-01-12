@@ -6,12 +6,11 @@
 /*   By: rchoquer <rchoquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/11 10:36:02 by rchoquer          #+#    #+#             */
-/*   Updated: 2016/12/11 19:55:49 by rchoquer         ###   ########.fr       */
+/*   Updated: 2017/01/12 18:36:00 by rchoquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
-
 
 #include "../include/fdf.h"
 
@@ -52,7 +51,7 @@ int				print_key(int keycode, void *e)
 {
 	(void)e;
 	if (keycode == 53 || keycode == 17)
-		exit (1);
+		ft_exit(PROPER);
 	printf("Unknown Key\n");
 	return (1);
 }

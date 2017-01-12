@@ -6,7 +6,7 @@
 #    By: rchoquer <rchoquer@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/05 04:09:13 by rchoquer          #+#    #+#              #
-#    Updated: 2017/01/11 19:58:15 by rchoquer         ###   ########.fr        #
+#    Updated: 2017/01/12 18:55:48 by rchoquer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,8 +15,7 @@ PROJECT			=	FDF
 
 CC				=	gcc
 CFLAGS			=	-Werror -Wextra -Wall
-CPPFLAGS		=	-Iinclude -Imlx -framework OpenGL -framework AppKit
-
+CPPFLAGS		=	-Iinclude
 LIB_PATH		=	libft
 LIB				=	$(LIB_PATH)/libft.a
 LIB_LINK		=	-L $(LIB_PATH) -lft
@@ -51,7 +50,7 @@ OK				=	$(C_OK)OK$(C_NO)
 all: $(OBJ_PATH) $(NAME)
 
 $(NAME): $(LIB) $(OBJ)
-	@$(CC) $(CFLAGS) -o fdf $(OBJ) $(LIB_LINK) 
+	@$(CC) $(CFLAGS) -o fdf $(OBJ) $(LIB_LINK) -lmlx -framework OpenGL -framework AppKit
 	@echo $(PROJECT) "\033[32BUILT FDF\033[0m"
 
 $(LIB):
@@ -68,7 +67,7 @@ clean:
 	@rm -f $(OBJS)
 	@rm -rf $(OBJ_PATH)
 	@make -C $(LIB_PATH) clean
-	@make -C mlx clean	
+	@make -C mlx clean
 	@echo $(PROJECT) "\033[93mCleaned up object files\033[0m"
 
 fclean: clean

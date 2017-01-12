@@ -6,25 +6,16 @@
 /*   By: rchoquer <rchoquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/11 10:35:55 by rchoquer          #+#    #+#             */
-/*   Updated: 2016/12/11 18:18:17 by rchoquer         ###   ########.fr       */
+/*   Updated: 2017/01/12 18:36:49 by rchoquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-int				ft_exit(STATUS current)
+void			ft_exit(char *error)
 {
-	if (current == ERROR)
-	{
-		ft_putendl("Something went wrong");
-		exit (ERROR);
-	}
-	else if (current == BADARG)
-	{
-		ft_putendl("usage: ./fdf file");
-		exit (ERROR);
-	}
-	return (0);
+	ft_putendl(error);
+	exit (1);
 }
 
 t_env			setup(void)
@@ -35,7 +26,7 @@ t_env			setup(void)
 	e.size.y = 800;
 	if (!(e.mlx = mlx_init())
 	|| !(e.win = mlx_new_window(e.mlx, e.size.x, e.size.y, "Mon FDF")))
-		exit (-1);
+		ft_exit (ERROR);
 	return (e);
 }
 
