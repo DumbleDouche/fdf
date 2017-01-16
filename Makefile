@@ -6,7 +6,7 @@
 #    By: rchoquer <rchoquer@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/05 04:09:13 by rchoquer          #+#    #+#              #
-#    Updated: 2017/01/12 18:55:48 by rchoquer         ###   ########.fr        #
+#    Updated: 2017/01/16 22:33:11 by rchoquer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,19 +15,21 @@ PROJECT			=	FDF
 
 CC				=	gcc
 CFLAGS			=	-Werror -Wextra -Wall
-CPPFLAGS		=	-Iinclude
+CPPFLAGS		=	-Iincludes
+
 LIB_PATH		=	libft
 LIB				=	$(LIB_PATH)/libft.a
 LIB_LINK		=	-L $(LIB_PATH) -lft
 
 SRC_NAME		=	drawing.c \
 					process.c
+
 OBJ_NAME		=	$(SRC_NAME:.c=.o)
 INC_NAME		=	fdf.h
 
 SRC_PATH		=	src
 OBJ_PATH		=	obj
-INC_PATH		=	include
+INC_PATH		=	includes
 
 SRC				=	$(addprefix $(SRC_PATH)/,$(SRC_NAME))
 OBJ				=	$(addprefix $(OBJ_PATH)/,$(OBJ_NAME))
@@ -50,29 +52,36 @@ OK				=	$(C_OK)OK$(C_NO)
 all: $(OBJ_PATH) $(NAME)
 
 $(NAME): $(LIB) $(OBJ)
-	@$(CC) $(CFLAGS) -o fdf $(OBJ) $(LIB_LINK) -lmlx -framework OpenGL -framework AppKit
-	@echo $(PROJECT) "\033[32BUILT FDF\033[0m"
+	@$(CC) $(CFLAGS) -o fdf $(OBJ) $(LIB_LINK) -lmlx -framework OpenGL -framework AppKit > /dev/null
+	@echo $(PROJECT) "  -" "\033[32mBuilt FDF\033[0m"
 
 $(LIB):
-	@make -C mlx
+	@make -C mlx 1> /dev/null
 	@make -C $(LIB_PATH)
+	@echo "MLX   - \033[32mBuilt MLX\033[0m"
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
-	@$(CC) $(CFLAGS) $(CPPFLAGS) -o $@ -c $^
+	@$(CC) $(CFLAGS) $(CPPFLAGS) -o $@ -c $^ > /dev/null
 
 $(OBJ_PATH):
-	@mkdir -p $@
+	@/bin/mkdir -p $@ > /dev/null
 
 clean:
-	@rm -f $(OBJS)
-	@rm -rf $(OBJ_PATH)
+	@/bin/rm -f $(OBJS)
+	@/bin/rm -rf $(OBJ_PATH)
 	@make -C $(LIB_PATH) clean
-	@make -C mlx clean
-	@echo $(PROJECT) "\033[93mCleaned up object files\033[0m"
+	@make -C mlx clean > /dev/null
+	@echo $(PROJECT) "  -" "\033[33mCleaned up object files\033[0m"
 
 fclean: clean
-	@rm -f $(NAME)
+	@/bin/rm -f $(NAME) > /dev/null
 	@make -C $(LIB_PATH) fclean
-	@echo $(PROJECT) "\033[91mCleaned up compiled files\033[0m"
+	@echo $(PROJECT) "  -" "\033[91mCleaned up compiled files\033[0m"
 
 re: fclean all
+
+norme:
+	@echo $(PROJECT) "-" "\033[34mNORME\033[0m"
+	@norminette $(SRC)
+	@norminette $(INC)
+	@make -C libft norme
