@@ -6,7 +6,7 @@
 #    By: rchoquer <rchoquer@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/05 04:09:13 by rchoquer          #+#    #+#              #
-#    Updated: 2017/01/16 22:33:11 by rchoquer         ###   ########.fr        #
+#    Updated: 2017/01/17 01:08:04 by rchoquer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,8 +21,7 @@ LIB_PATH		=	libft
 LIB				=	$(LIB_PATH)/libft.a
 LIB_LINK		=	-L $(LIB_PATH) -lft
 
-SRC_NAME		=	drawing.c \
-					process.c
+SRC_NAME		=	drawing.c process.c lists.c input.c get_next_line.c
 
 OBJ_NAME		=	$(SRC_NAME:.c=.o)
 INC_NAME		=	fdf.h
@@ -36,32 +35,21 @@ OBJ				=	$(addprefix $(OBJ_PATH)/,$(OBJ_NAME))
 INC				=	$(addprefix $(INC_PATH)/,$(INC_NAME))
 INCS			=	-I$(LIB_PATH)/$(INC_PATH) -I$(INC_PATH)
 
-# COLORS
-C_NO			=	"\033[00m"
-C_OK			=	"\033[32m"
-C_GOOD			=	"\033[32m"
-C_ERROR			=	"\033[31m"
-C_WARN			=	"\033[33m"
-
-# DBG MESSAGE
-SUCCESS			=	$(C_GOOD)SUCCESS$(C_NO)
-OK				=	$(C_OK)OK$(C_NO)
-
 .PHONY: clean all re fclean
 
 all: $(OBJ_PATH) $(NAME)
 
 $(NAME): $(LIB) $(OBJ)
-	@$(CC) $(CFLAGS) -o fdf $(OBJ) $(LIB_LINK) -lmlx -framework OpenGL -framework AppKit > /dev/null
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LIB_LINK) -lmlx -framework OpenGL -framework AppKit -g
 	@echo $(PROJECT) "  -" "\033[32mBuilt FDF\033[0m"
 
 $(LIB):
 	@make -C mlx 1> /dev/null
-	@make -C $(LIB_PATH)
 	@echo "MLX   - \033[32mBuilt MLX\033[0m"
+	@make -C $(LIB_PATH)
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
-	@$(CC) $(CFLAGS) $(CPPFLAGS) -o $@ -c $^ > /dev/null
+	@$(CC) $(CFLAGS) $(CPPFLAGS) -o $@ -c $^ -g
 
 $(OBJ_PATH):
 	@/bin/mkdir -p $@ > /dev/null
