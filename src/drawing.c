@@ -6,7 +6,7 @@
 /*   By: rchoquer <rchoquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/11 10:36:02 by rchoquer          #+#    #+#             */
-/*   Updated: 2017/01/18 04:42:44 by rchoquer         ###   ########.fr       */
+/*   Updated: 2017/01/18 05:05:11 by rchoquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,32 @@
 
 #include "../includes/fdf.h"
 
-void		drawline(int x0, int y0, int x1, int y1, t_env e) {
- 
-  int dx = abs(x1 - x0), sx = x0 < x1 ? 1 : -1;
-  int dy = abs(y1 - y0), sy = y0 < y1 ? 1 : -1; 
-  int err = (dx > dy ? dx : -dy) / 2, e2;
- 
-  for(;;){
-    mlx_pixel_put(e.mlx, e.win, x0,y0, 0xFFFFFF);
-    if (x0 == x1 && y0 == y1) break;
-    e2 = err;
-    if (e2 >-dx) { err -= dy; x0 += sx; }
-    if (e2 < dy) { err += dx; y0 += sy; }
-  }
+void			drawline(int x0, int y0, int x1, int y1, t_env e)
+{
+	int		dx = abs(x1 - x0);
+	int		sx = x0 < x1 ? 1 : -1;
+	int		dy = abs(y1 - y0);
+	int		sy = y0 < y1 ? 1 : -1;
+	int		err = (dx > dy ? dx : -dy) / 2;
+	int		e2;
+
+	while (1)
+	{
+		mlx_pixel_put(e.mlx, e.win, x0, y0, 0xFFFFFF);
+		if (x0 == x1 && y0 == y1)
+			break ;
+		e2 = err;
+		if (e2 > -dx)
+		{
+			err -= dy;
+			x0 += sx;
+		}
+		if (e2 < dy)
+		{
+			err += dx;
+			y0 += sy;
+		}
+	}
 }
 
 int				draw(t_env e, t_size size, t_point *points)
@@ -44,8 +57,11 @@ int				draw(t_env e, t_size size, t_point *points)
 		ln = nxtln(iter);
 		if (iter->next)
 		{
-			Y == NY ? drawline(CX(X, Y, Z), CY(X, Y, Z), CX(NX, Y, NZ), CY(NX, NY, NZ), e): 0;
-			drawline(CX(X, Y, Z), CY(X, Y, Z), CX(LX, LY, LZ), CY(LX, LY, LZ), e);
+			Y == NY ?
+			drawline(CX(X, Y, Z), CY(X, Y, Z), CX(NX, Y, NZ), CY(NX, NY, NZ)
+			, e) : 0;
+			drawline(CX(X, Y, Z), CY(X, Y, Z), CX(LX, LY, LZ), CY(LX, LY, LZ)
+			, e);
 		}
 		iter = iter->next;
 	}
