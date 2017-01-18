@@ -6,7 +6,7 @@
 /*   By: rchoquer <rchoquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/11 10:36:02 by rchoquer          #+#    #+#             */
-/*   Updated: 2017/01/16 23:40:12 by rchoquer         ###   ########.fr       */
+/*   Updated: 2017/01/18 03:40:18 by rchoquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,7 @@
 
 #include "../includes/fdf.h"
 
-// int				draw_line(t_env e, t_size size)
-// {
-// 	size_t		i;
-// 	t_size		middle;
-
-// 	i = 0;
-// 	middle.x = (e.size.x / 2) - (size.x * 10);
-// 	middle.y = (e.size.y / 2) - (size.y * 10);
-// 	while (i < size.x * 10)
-// 	{
-// 		mlx_pixel_put(e.mlx, e.win, middle.x + i, middle.y, 0xFFFFFF);
-// 		++i;
-// 	}
-// 	i = 0;
-// 	while (i < size.y * 10)
-// 	{
-// 		mlx_pixel_put(e.mlx, e.win, middle.x, middle.y + i, 0xFFFFFF);
-// 		++i;
-// 	}
-// 	return (1);
-// }
-
-void		draw_line(int x0, int y0, int x1, int y1, t_env e) {
+void		drawline(int x0, int y0, int x1, int y1, t_env e) {
  
   int dx = abs(x1 - x0), sx = x0 < x1 ? 1 : -1;
   int dy = abs(y1 - y0), sy = y0 < y1 ? 1 : -1; 
@@ -51,24 +29,36 @@ void		draw_line(int x0, int y0, int x1, int y1, t_env e) {
   }
 }
 
-int				draw(t_env e, t_size size)
+int				draw(t_env e, t_size size, t_point *points)
 {
 	void		*param;
+	t_point		*iter;
+	t_point		*ln;
 
 	param = &e;
 	(void)size;
+	iter = points;
+	ln = NULL;
+	while (iter)
+	{
+		// (iter->next) ? drawline(CX(X, Z), CY(Y, Z), CX(NX, NZ), CY(NY, NZ), e): 0;
+		ln = nxtln(iter);
+		if (iter->next)
+		{
+			// drawline(CX(X, Z), CY(Y, Z), CX(NX, NZ), CY(NY, NZ), e);
+			drawline(CX(X, Z), CY(Y, Z), CX(LX, LZ), CY(LY, LZ), e);
+		}
+		iter = iter->next;
+	}
 	mlx_key_hook(e.win, print_key, param);
-	draw_line(500, 500, 600, 400, e);
-	draw_line(600, 400, 200, 400, e);
 	mlx_loop(e.mlx);
 	return (1);
 }
 
-int				print_key(int keycode, void *e)
+int				print_key(int keycode)
 {
-	(void)e;
 	if (keycode == 53 || keycode == 17)
 		ft_exit(PROPER);
-	printf("Unknown Key\n");
+	ft_putstr("Unknown Key\n");
 	return (1);
 }

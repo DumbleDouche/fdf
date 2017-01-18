@@ -6,12 +6,9 @@
 /*   By: rchoquer <rchoquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/16 02:47:48 by rchoquer          #+#    #+#             */
-/*   Updated: 2017/01/17 00:32:40 by rchoquer         ###   ########.fr       */
+/*   Updated: 2017/01/18 03:44:03 by rchoquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include <stdio.h>
-
 
 #include <stdlib.h>
 #include "../includes/fdf.h"
@@ -27,29 +24,48 @@ void		lst_append(t_point **node, size_t x, size_t y, long z)
 	{
 		last = iter;
 		iter = iter->next;
-		printf("yes\n");
 	}
 	iter = (t_point*)malloc(sizeof(t_point));
 	iter->x = x;
 	iter->y = y;
 	iter->z = z;
-	last->next = iter;
 	iter->next = NULL;
+	if (*node)
+		last->next = iter;
+	else
+		*node = iter;
+}
+
+t_point		*nxtln(t_point *node)
+{
+	t_point		*iter;
+
+	iter = node;
+	iter = iter->next ? iter->next : iter;
+	while (iter && iter->x != node->x)
+		iter = iter->next;
+	return (iter);
 }
 
 int			print_lst(t_point *node)
 {
 	size_t	i;
+	size_t	last;
 	t_point	*iter;
 
 	i = 0;
 	iter = node;
-	// printf("here: %ld\n", node->z);
+	last = iter->y;
 	while (iter)
 	{
-		ft_putnbr(iter->z);
+		ft_putnbr(X);
 		ft_putchar(' ');
+		ft_putnbr(Y);
+		ft_putchar(' ');
+		ft_putnbr(Z);
+		ft_putchar('\n');
 		++i;
+		last = iter->y;
 		iter = iter->next;
 	}
 	return (i);
