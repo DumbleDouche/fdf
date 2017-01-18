@@ -6,7 +6,7 @@
 /*   By: rchoquer <rchoquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/11 07:06:37 by rchoquer          #+#    #+#             */
-/*   Updated: 2017/01/18 03:38:26 by rchoquer         ###   ########.fr       */
+/*   Updated: 2017/01/18 04:54:50 by rchoquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,12 @@
 # define BADARG "usage: ./fdf file"
 # define PROPER "./fdf ended properly"
 
-# define CX(x, z)	(x * 15 + (z * 0.65))
-# define CY(y, z)	(y * 15 + (z * (0.65 / 2)))
+// # define CX(x, z)	((x + (z * 0.75))) * 20
+// # define CY(y, z)	((y + (z * (0.75 / 2)))) * 20
+
+# define CX(x, y, z)		(0.66 * x - y * 0.87) * 20 + 450
+# define CY(x, y, z)		((z) + (0.66/2) * x + (0.87/2) * y) * 20 + 100
+
 
 # define X			iter->x
 # define Y			iter->y

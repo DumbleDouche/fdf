@@ -6,7 +6,7 @@
 #    By: rchoquer <rchoquer@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/05 04:09:13 by rchoquer          #+#    #+#              #
-#    Updated: 2017/01/18 03:45:43 by rchoquer         ###   ########.fr        #
+#    Updated: 2017/01/18 04:55:53 by rchoquer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,7 @@ INC				=	$(addprefix $(INC_PATH)/,$(INC_NAME))
 all: $(OBJ_PATH) $(INC) $(NAME)
 
 $(NAME): $(LIB) $(OBJ)
-	@$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LIB_LINK) -lmlx -framework OpenGL -framework AppKit -g
+	@$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LIB_LINK) -lmlx -framework OpenGL -framework AppKit
 	@echo $(PROJECT) "  -" "\033[32mBuilt FDF\033[0m"
 
 $(LIB):
@@ -48,7 +48,7 @@ $(LIB):
 	@make -C $(LIB_PATH)
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
-	@$(CC) $(CFLAGS) $(CPPFLAGS) -o $@ -c $^ -g
+	@$(CC) $(CFLAGS) $(CPPFLAGS) -o $@ -c $^
 
 $(OBJ_PATH):
 	@/bin/mkdir -p $@ > /dev/null

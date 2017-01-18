@@ -6,7 +6,7 @@
 /*   By: rchoquer <rchoquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/11 10:36:02 by rchoquer          #+#    #+#             */
-/*   Updated: 2017/01/18 03:40:18 by rchoquer         ###   ########.fr       */
+/*   Updated: 2017/01/18 04:42:44 by rchoquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,11 @@ int				draw(t_env e, t_size size, t_point *points)
 	ln = NULL;
 	while (iter)
 	{
-		// (iter->next) ? drawline(CX(X, Z), CY(Y, Z), CX(NX, NZ), CY(NY, NZ), e): 0;
 		ln = nxtln(iter);
 		if (iter->next)
 		{
-			// drawline(CX(X, Z), CY(Y, Z), CX(NX, NZ), CY(NY, NZ), e);
-			drawline(CX(X, Z), CY(Y, Z), CX(LX, LZ), CY(LY, LZ), e);
+			Y == NY ? drawline(CX(X, Y, Z), CY(X, Y, Z), CX(NX, Y, NZ), CY(NX, NY, NZ), e): 0;
+			drawline(CX(X, Y, Z), CY(X, Y, Z), CX(LX, LY, LZ), CY(LX, LY, LZ), e);
 		}
 		iter = iter->next;
 	}

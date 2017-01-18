@@ -6,7 +6,7 @@
 /*   By: rchoquer <rchoquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/11 10:35:55 by rchoquer          #+#    #+#             */
-/*   Updated: 2017/01/18 03:22:52 by rchoquer         ###   ########.fr       */
+/*   Updated: 2017/01/18 04:16:11 by rchoquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ int				main(int ac, char **av)
 		ft_exit(FILE);
 	points = store(fd);
 	close(fd);
-	print_lst(points);
 	e = setup(av[1]);
 	draw(e, size, points);
 	return (0);
