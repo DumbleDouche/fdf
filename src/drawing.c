@@ -6,23 +6,13 @@
 /*   By: rchoquer <rchoquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/11 10:36:02 by rchoquer          #+#    #+#             */
-/*   Updated: 2017/01/26 06:12:53 by rchoquer         ###   ########.fr       */
+/*   Updated: 2017/01/26 06:44:28 by rchoquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-
 #include "../include/fdf.h"
 
-void		pixel_put(t_env e, int x, int y, int color)
-{
-	unsigned int	*addr;
-
-	addr = (unsigned int*)(e.imgaddr);
-	addr[y * 1 +x * 1] = mlx_get_color_value(e.mlx, color);
-}
-
-void		drawline(int x0, int y0, int x1, int y1, t_env e)
+void			drawline(int x0, int y0, int x1, int y1, t_env e)
 {
 	t_draw	o;
 
@@ -31,10 +21,9 @@ void		drawline(int x0, int y0, int x1, int y1, t_env e)
 	o.dy = abs(y1 - y0);
 	o.sy = y0 < y1 ? 1 : -1;
 	o.err = (o.dx > o.dy ? o.dx : -o.dy) / 2;
-	printf("while %p\n", e.img);
 	while (42)
 	{
-		pixel_put(e, x0, y0, 0x9aff9a);
+		mlx_pixel_put(e.mlx, e.win, x0, y0, 0x9aff9a);
 		if (x0 == x1 && y0 == y1)
 			break ;
 		o.e2 = o.err;
@@ -73,13 +62,10 @@ void			draw(t_env e, t_point *iter)
 	}
 }
 
-int					core(t_env *e, t_point *iter)
+int				core(t_env *e, t_point *iter)
 {
-	printf("before %p\n", e->img);
 	draw(*e, iter);
 	mlx_key_hook(e->win, hook_key, &(*e));
-	printf("afterafter %p\n", e->img);	
-	mlx_put_image_to_window(e->mlx, e->win, e->img, 0, 0);
 	mlx_loop(e->mlx);
 	return (1);
 }

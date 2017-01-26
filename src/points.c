@@ -6,7 +6,7 @@
 /*   By: rchoquer <rchoquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/26 01:25:36 by rchoquer          #+#    #+#             */
-/*   Updated: 2017/01/26 05:45:32 by rchoquer         ###   ########.fr       */
+/*   Updated: 2017/01/26 07:31:29 by rchoquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,16 @@ t_size		calc_point(int x, int y, int z, t_opt opt)
 	if (opt.perspect)
 	{
 		origin.x = (opt.ct * x - y * opt.ctt) * opt.s
-		+ 500 + (opt.vert * 50);
+		+ 550 + (opt.vert * 10);
 		origin.y = (-z + (opt.ct / 2) * x + (opt.ctt / 2) * y) * opt.s
-		+ 500 + (opt.vert * 50);
+		+ 400 + (opt.horiz * 10);
 	}
 	else
 	{
-		origin.x = ((x + (z * opt.ct))) * opt.s
-		+ 500 + (opt.horiz * 50);
-		origin.y = ((y + (z * (opt.ct / 2)))) * opt.s
-		+ 500 + (opt.horiz * 50);
+		origin.x = ((x + (-z * opt.ct))) * opt.s
+		+ 200 + (opt.vert * 10);
+		origin.y = ((y + (-z * (opt.ct / 2)))) * opt.s
+		+ 200 + (opt.horiz * 10);
 	}
 	return (origin);
 }

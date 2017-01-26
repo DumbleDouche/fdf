@@ -6,7 +6,7 @@
 /*   By: rchoquer <rchoquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/16 02:47:48 by rchoquer          #+#    #+#             */
-/*   Updated: 2017/01/26 05:51:42 by rchoquer         ###   ########.fr       */
+/*   Updated: 2017/01/26 06:18:14 by rchoquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,28 +45,4 @@ t_point		*nxtln(t_point *node)
 	while (iter && iter->x != node->x)
 		iter = iter->next;
 	return (iter ? iter : node);
-}
-
-int			print_lst(t_point *node)
-{
-	size_t	i;
-	size_t	last;
-	t_point	*iter;
-
-	i = 0;
-	iter = node;
-	last = iter->y;
-	while (iter)
-	{
-		ft_putnbr(X);
-		ft_putchar(' ');
-		ft_putnbr(Y);
-		ft_putchar(' ');
-		ft_putnbr(Z);
-		ft_putchar('\n');
-		++i;
-		last = iter->y;
-		iter = iter->next;
-	}
-	return (i);
 }

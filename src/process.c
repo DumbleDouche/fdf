@@ -6,7 +6,7 @@
 /*   By: rchoquer <rchoquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/11 10:35:55 by rchoquer          #+#    #+#             */
-/*   Updated: 2017/01/26 05:48:47 by rchoquer         ###   ########.fr       */
+/*   Updated: 2017/01/26 07:25:28 by rchoquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,21 +22,18 @@ void			ft_exit(char *error)
 t_env			setup(char *name)
 {
 	t_env		e;
-	int			endian;
 
 	e.size.x = 1000;
 	e.size.y = 1000;
 	if (!(e.mlx = mlx_init())
-	|| !(e.img = mlx_new_image(e.mlx, e.size.x, e.size.y))
-	|| !(e.win = mlx_new_window(e.mlx, e.size.x, e.size.y, name))
-	|| !(e.imgaddr = mlx_get_data_addr(e.img, &e.bpp, &e.sl, &endian)))
+	|| !(e.win = mlx_new_window(e.mlx, e.size.x, e.size.y, name)))
 		ft_exit(ERROR);
 	e.opt.perspect = 1;
 	e.opt.ct = 0.50;
 	e.opt.ctt = 0.50;
 	e.opt.vert = 0;
 	e.opt.horiz = 0;
-	e.opt.s = 50;
+	e.opt.s = 20;
 	e.opt.height = 1;
 	return (e);
 }

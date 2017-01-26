@@ -6,14 +6,13 @@
 /*   By: rchoquer <rchoquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/11 07:06:37 by rchoquer          #+#    #+#             */
-/*   Updated: 2017/01/26 05:51:52 by rchoquer         ###   ########.fr       */
+/*   Updated: 2017/01/26 06:51:36 by rchoquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 
-// #include "../mlx/mlx.h"
 # include <mlx.h>
 # include "../libft/include/libft.h"
 # include <stdlib.h>
@@ -76,13 +75,8 @@ typedef struct		s_point
 
 typedef struct		s_env
 {
-	int				sl;
-	int				bpp;
-	int				endian;
-	char			*imgaddr;
 	void			*mlx;
 	void			*win;
-	void			*img;
 	t_opt			opt;
 	t_size			size;
 	t_point			*head;
@@ -95,13 +89,10 @@ int					core(t_env *e, t_point *head);
 void				ft_exit(char *error);
 void				draw(t_env e, t_point *iter);
 void				drawline(int x0, int y0, int x1, int y1, t_env e);
-void				pixel_put(t_env e, int x, int y, int color);
 void				lst_append(t_point **node, size_t x, size_t y, long z);
 t_env				setup(char *name);
 t_size				calc_point(int x, int y, int z, t_opt opt);
 t_point				*nxtln(t_point *node);
 t_point				*store(int fd, t_env *e);
-
-int			print_lst(t_point *node);
 
 #endif
