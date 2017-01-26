@@ -6,11 +6,11 @@
 /*   By: rchoquer <rchoquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/02 06:24:20 by rchoquer          #+#    #+#             */
-/*   Updated: 2017/01/16 23:57:46 by rchoquer         ###   ########.fr       */
+/*   Updated: 2017/01/21 04:35:17 by rchoquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/get_next_line.h"
+#include "../include/get_next_line.h"
 
 static t_fd			*getfd(int fd, t_fd **fdlst)
 {

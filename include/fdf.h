@@ -6,7 +6,7 @@
 /*   By: rchoquer <rchoquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/11 07:06:37 by rchoquer          #+#    #+#             */
-/*   Updated: 2017/01/18 04:59:08 by rchoquer         ###   ########.fr       */
+/*   Updated: 2017/01/26 05:51:52 by rchoquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 // #include "../mlx/mlx.h"
 # include <mlx.h>
-# include "../libft/includes/libft.h"
+# include "../libft/include/libft.h"
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
@@ -26,12 +26,6 @@
 # define FILE	"Error with input file"
 # define BADARG "usage: ./fdf file"
 # define PROPER "./fdf ended properly"
-
-// # define CX(x, z)	((x + (z * 0.75))) * 20
-// # define CY(y, z)	((y + (z * (0.75 / 2)))) * 20
-
-# define CX(x, y, z)		(0.66 * x - y * 0.87) * 20 + 450
-# define CY(x, y, z)		((z) + (0.66/2) * x + (0.87/2) * y) * 20 + 100
 
 # define X			iter->x
 # define Y			iter->y
@@ -51,29 +45,63 @@ typedef struct		s_size
 	size_t			y;
 }					t_size;
 
+typedef struct		s_draw
+{
+	int				dx;
+	int				sx;
+	int				dy;
+	int				sy;
+	int				err;
+	int				e2;
+}					t_draw;
+
+typedef struct		s_opt
+{
+	unsigned short	s;
+	unsigned short	perspect;
+	unsigned short	height;
+	float			ct;
+	float			ctt;
+	long			vert;
+	long			horiz;
+}					t_opt;
+
 typedef struct		s_point
 {
+	long			z;
 	size_t			x;
 	size_t			y;
-	long			z;
 	struct s_point	*next;
 }					t_point;
 
 typedef struct		s_env
 {
+	int				sl;
+	int				bpp;
+	int				endian;
+	char			*imgaddr;
 	void			*mlx;
 	void			*win;
 	void			*img;
+	t_opt			opt;
 	t_size			size;
+	t_point			*head;
+	size_t			x;
+	size_t			y;
 }					t_env;
 
-int					draw(t_env e, t_size size, t_point *points);
-int					print_key(int keycode);
-int					print_lst(t_point *node);
+int					hook_key(int keycode, t_env *e);
+int					core(t_env *e, t_point *head);
 void				ft_exit(char *error);
+void				draw(t_env e, t_point *iter);
+void				drawline(int x0, int y0, int x1, int y1, t_env e);
+void				pixel_put(t_env e, int x, int y, int color);
 void				lst_append(t_point **node, size_t x, size_t y, long z);
 t_env				setup(char *name);
+t_size				calc_point(int x, int y, int z, t_opt opt);
 t_point				*nxtln(t_point *node);
-t_point				*store(int fd);
+t_point				*store(int fd, t_env *e);
+
+int			print_lst(t_point *node);
 
 #endif

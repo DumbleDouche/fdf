@@ -6,12 +6,12 @@
 /*   By: rchoquer <rchoquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/16 02:47:48 by rchoquer          #+#    #+#             */
-/*   Updated: 2017/01/18 04:45:10 by rchoquer         ###   ########.fr       */
+/*   Updated: 2017/01/26 05:51:42 by rchoquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "../includes/fdf.h"
+#include "../include/fdf.h"
 
 void		lst_append(t_point **node, size_t x, size_t y, long z)
 {
@@ -28,7 +28,7 @@ void		lst_append(t_point **node, size_t x, size_t y, long z)
 	iter = (t_point*)malloc(sizeof(t_point));
 	iter->x = x;
 	iter->y = y;
-	iter->z = -z;
+	iter->z = z;
 	iter->next = NULL;
 	if (*node)
 		last->next = iter;
