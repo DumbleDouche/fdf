@@ -6,7 +6,7 @@
 /*   By: rchoquer <rchoquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/11 07:06:37 by rchoquer          #+#    #+#             */
-/*   Updated: 2017/01/27 04:25:32 by rchoquer         ###   ########.fr       */
+/*   Updated: 2017/01/27 05:01:50 by rchoquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ typedef struct		s_opt
 	float			tmp;
 	long			vert;
 	long			horiz;
+	unsigned int	color;
 }					t_opt;
 
 typedef struct		s_coord
@@ -94,6 +95,8 @@ typedef struct		s_env
 
 int					hook_key(int keycode, t_env *e);
 int					core(t_env *e, t_point *head);
+void				recreate_img(t_env e);
+void				colors(t_env *e, int key);
 void				ft_exit(char *error);
 void				draw(t_env e, t_point *iter);
 void				drawline(t_coord origin, t_coord end, t_env e);

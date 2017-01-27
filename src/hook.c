@@ -6,13 +6,13 @@
 /*   By: rchoquer <rchoquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/26 02:32:18 by rchoquer          #+#    #+#             */
-/*   Updated: 2017/01/27 04:26:58 by rchoquer         ###   ########.fr       */
+/*   Updated: 2017/01/27 05:15:07 by rchoquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-static void		recreate_img(t_env e)
+void			recreate_img(t_env e)
 {
 	mlx_clear_window(e.mlx, e.win);
 	draw(e, e.head);
@@ -59,6 +59,7 @@ static void		reset_opt(t_env *e)
 	e->opt.horiz = 0;
 	e->opt.s = 20;
 	e->opt.height = 1;
+	e->opt.color = 0x9aff9a;
 	recreate_img(*e);
 }
 
@@ -73,13 +74,15 @@ int				hook_key(int keycode, t_env *e)
 		move_pos(keycode, e);
 	else if (keycode == 15)
 		reset_opt(e);
+	else if (keycode == 32 || keycode == 34 || keycode == 16 || keycode == 4
+	|| keycode == 38 || keycode == 40)
+		colors(&(*e), keycode);
 	else if (keycode == 8)
 	{
 		e->opt.tmp = e->opt.ct;
 		e->opt.ct = e->opt.ct_p;
 		e->opt.ct_p = e->opt.tmp;
 		e->opt.perspect = !e->opt.perspect;
-		recreate_img(*e);
 	}
 	return (1);
 }

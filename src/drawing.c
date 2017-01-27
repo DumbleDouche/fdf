@@ -6,7 +6,7 @@
 /*   By: rchoquer <rchoquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/11 10:36:02 by rchoquer          #+#    #+#             */
-/*   Updated: 2017/01/27 04:24:41 by rchoquer         ###   ########.fr       */
+/*   Updated: 2017/01/27 04:51:09 by rchoquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void			drawline(t_coord origin, t_coord end, t_env e)
 	o.err = (o.dx > o.dy ? o.dx : -o.dy) / 2;
 	while (42)
 	{
-		mlx_pixel_put(e.mlx, e.win, origin.x, origin.y, 0x9aff9a);
+		mlx_pixel_put(e.mlx, e.win, origin.x, origin.y, e.opt.color);
 		if (origin.x == end.x && origin.y == end.y)
 			break ;
 		o.e2 = o.err;

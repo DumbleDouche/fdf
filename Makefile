@@ -6,7 +6,7 @@
 #    By: rchoquer <rchoquer@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/05 04:09:13 by rchoquer          #+#    #+#              #
-#    Updated: 2017/01/26 06:08:49 by rchoquer         ###   ########.fr        #
+#    Updated: 2017/01/27 04:59:10 by rchoquer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ LIB_PATH		=	libft
 LIB				=	$(LIB_PATH)/libft.a
 LIB_LINK		=	-L $(LIB_PATH) -lft
 
-SRC_NAME		=	drawing.c process.c lists.c input.c get_next_line.c points.c hook.c
+SRC_NAME		=	drawing.c process.c lists.c input.c get_next_line.c points.c hook.c colors.c
 
 OBJ_NAME		=	$(SRC_NAME:.c=.o)
 INC_NAME		=	fdf.h get_next_line.h
