@@ -6,7 +6,7 @@
 /*   By: rchoquer <rchoquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/11 07:06:37 by rchoquer          #+#    #+#             */
-/*   Updated: 2017/01/26 06:51:36 by rchoquer         ###   ########.fr       */
+/*   Updated: 2017/01/27 04:25:32 by rchoquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,18 @@ typedef struct		s_opt
 	unsigned short	perspect;
 	unsigned short	height;
 	float			ct;
+	float			ct_p;
 	float			ctt;
+	float			tmp;
 	long			vert;
 	long			horiz;
 }					t_opt;
+
+typedef struct		s_coord
+{
+	long			x;
+	long			y;
+}					t_coord;
 
 typedef struct		s_point
 {
@@ -88,10 +96,9 @@ int					hook_key(int keycode, t_env *e);
 int					core(t_env *e, t_point *head);
 void				ft_exit(char *error);
 void				draw(t_env e, t_point *iter);
-void				drawline(int x0, int y0, int x1, int y1, t_env e);
+void				drawline(t_coord origin, t_coord end, t_env e);
 void				lst_append(t_point **node, size_t x, size_t y, long z);
-t_env				setup(char *name);
-t_size				calc_point(int x, int y, int z, t_opt opt);
+t_coord				calc_point(int x, int y, int z, t_opt opt);
 t_point				*nxtln(t_point *node);
 t_point				*store(int fd, t_env *e);
 

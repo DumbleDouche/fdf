@@ -6,7 +6,7 @@
 /*   By: rchoquer <rchoquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/11 10:35:55 by rchoquer          #+#    #+#             */
-/*   Updated: 2017/01/26 07:25:28 by rchoquer         ###   ########.fr       */
+/*   Updated: 2017/01/27 04:08:05 by rchoquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void			ft_exit(char *error)
 	exit(1);
 }
 
-t_env			setup(char *name)
+static t_env	setup(char *name)
 {
 	t_env		e;
 
@@ -31,6 +31,9 @@ t_env			setup(char *name)
 	e.opt.perspect = 1;
 	e.opt.ct = 0.50;
 	e.opt.ctt = 0.50;
+	e.opt.tmp = 0;
+	e.opt.ct_p = 0.25;
+	e.opt.tmp = 0;
 	e.opt.vert = 0;
 	e.opt.horiz = 0;
 	e.opt.s = 20;

@@ -6,15 +6,15 @@
 /*   By: rchoquer <rchoquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/26 01:25:36 by rchoquer          #+#    #+#             */
-/*   Updated: 2017/01/26 07:31:29 by rchoquer         ###   ########.fr       */
+/*   Updated: 2017/01/27 04:25:04 by rchoquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-t_size		calc_point(int x, int y, int z, t_opt opt)
+t_coord		calc_point(int x, int y, int z, t_opt opt)
 {
-	t_size	origin;
+	t_coord	origin;
 
 	if (opt.perspect)
 	{

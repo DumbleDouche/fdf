@@ -6,36 +6,36 @@
 /*   By: rchoquer <rchoquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/11 10:36:02 by rchoquer          #+#    #+#             */
-/*   Updated: 2017/01/26 06:44:28 by rchoquer         ###   ########.fr       */
+/*   Updated: 2017/01/27 04:24:41 by rchoquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-void			drawline(int x0, int y0, int x1, int y1, t_env e)
+void			drawline(t_coord origin, t_coord end, t_env e)
 {
 	t_draw	o;
 
-	o.dx = abs(x1 - x0);
-	o.sx = x0 < x1 ? 1 : -1;
-	o.dy = abs(y1 - y0);
-	o.sy = y0 < y1 ? 1 : -1;
+	o.dx = labs(end.x - origin.x);
+	o.sx = origin.x < end.x ? 1 : -1;
+	o.dy = labs(end.y - origin.y);
+	o.sy = origin.y < end.y ? 1 : -1;
 	o.err = (o.dx > o.dy ? o.dx : -o.dy) / 2;
 	while (42)
 	{
-		mlx_pixel_put(e.mlx, e.win, x0, y0, 0x9aff9a);
-		if (x0 == x1 && y0 == y1)
+		mlx_pixel_put(e.mlx, e.win, origin.x, origin.y, 0x9aff9a);
+		if (origin.x == end.x && origin.y == end.y)
 			break ;
 		o.e2 = o.err;
 		if (o.e2 > -o.dx)
 		{
 			o.err -= o.dy;
-			x0 += o.sx;
+			origin.x += o.sx;
 		}
 		if (o.e2 < o.dy)
 		{
 			o.err += o.dx;
-			y0 += o.sy;
+			origin.y += o.sy;
 		}
 	}
 }
@@ -43,8 +43,8 @@ void			drawline(int x0, int y0, int x1, int y1, t_env e)
 void			draw(t_env e, t_point *iter)
 {
 	t_point		*ln;
-	t_size		origin;
-	t_size		end;
+	t_coord		origin;
+	t_coord		end;
 
 	ln = NULL;
 	while (iter)
@@ -54,9 +54,9 @@ void			draw(t_env e, t_point *iter)
 		{
 			origin = calc_point(X, Y, Z, e.opt);
 			end = calc_point(NX, NY, NZ, e.opt);
-			Y == NY ? drawline(origin.x, origin.y, end.x, end.y, e) : 0;
+			Y == NY ? drawline(origin, end, e) : 0;
 			end = calc_point(LX, LY, LZ, e.opt);
-			drawline(origin.x, origin.y, end.x, end.y, e);
+			drawline(origin, end, e);
 		}
 		iter = iter->next;
 	}

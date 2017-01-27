@@ -6,7 +6,7 @@
 /*   By: rchoquer <rchoquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/26 02:32:18 by rchoquer          #+#    #+#             */
-/*   Updated: 2017/01/26 07:33:17 by rchoquer         ###   ########.fr       */
+/*   Updated: 2017/01/27 04:26:58 by rchoquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,15 @@ static void		move_pos(int key, t_env *e)
 
 static void		move_space(int key, t_env *e)
 {
-	if (key == 126)
+	if (key == 126 && e->opt.perspect)
 		(e->opt.ctt) -= 0.01;
-	else if (key == 125)
+	else if (key == 125 && e->opt.perspect)
 		(e->opt.ctt += 0.01);
 	else if (key == 124)
 		(e->opt.ct) += 0.01;
 	else if (key == 123)
 		(e->opt.ct) -= 0.01;
-	else if (key == 31)
+	else if (key == 31 && e->opt.s > 0)
 		--(e->opt.s);
 	else if (key == 35)
 		++(e->opt.s);
@@ -53,6 +53,8 @@ static void		reset_opt(t_env *e)
 	e->opt.perspect = 1;
 	e->opt.ct = 0.50;
 	e->opt.ctt = 0.50;
+	e->opt.tmp = 0;
+	e->opt.ct_p = 0.50;
 	e->opt.vert = 0;
 	e->opt.horiz = 0;
 	e->opt.s = 20;
@@ -73,6 +75,9 @@ int				hook_key(int keycode, t_env *e)
 		reset_opt(e);
 	else if (keycode == 8)
 	{
+		e->opt.tmp = e->opt.ct;
+		e->opt.ct = e->opt.ct_p;
+		e->opt.ct_p = e->opt.tmp;
 		e->opt.perspect = !e->opt.perspect;
 		recreate_img(*e);
 	}
