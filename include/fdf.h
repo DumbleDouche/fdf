@@ -6,7 +6,7 @@
 /*   By: rchoquer <rchoquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/11 07:06:37 by rchoquer          #+#    #+#             */
-/*   Updated: 2017/01/27 05:01:50 by rchoquer         ###   ########.fr       */
+/*   Updated: 2017/01/28 02:32:15 by rchoquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,17 @@
 # define LY			ln->y
 # define LZ			ln->z
 
-typedef struct		s_size
+# define R			e->opt.color.r
+# define G			e->opt.color.g
+# define B			e->opt.color.b
+
+typedef struct		s_color
 {
-	size_t			x;
-	size_t			y;
-}					t_size;
+	unsigned char	r;
+	unsigned char	g;
+	unsigned char	b;
+	size_t			full;
+}					t_color;
 
 typedef struct		s_draw
 {
@@ -65,7 +71,7 @@ typedef struct		s_opt
 	float			tmp;
 	long			vert;
 	long			horiz;
-	unsigned int	color;
+	t_color			color;
 }					t_opt;
 
 typedef struct		s_coord
@@ -87,7 +93,7 @@ typedef struct		s_env
 	void			*mlx;
 	void			*win;
 	t_opt			opt;
-	t_size			size;
+	t_coord			size;
 	t_point			*head;
 	size_t			x;
 	size_t			y;

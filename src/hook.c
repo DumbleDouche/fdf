@@ -6,7 +6,7 @@
 /*   By: rchoquer <rchoquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/26 02:32:18 by rchoquer          #+#    #+#             */
-/*   Updated: 2017/01/27 05:15:07 by rchoquer         ###   ########.fr       */
+/*   Updated: 2017/01/28 02:49:38 by rchoquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,10 @@ static void		reset_opt(t_env *e)
 	e->opt.horiz = 0;
 	e->opt.s = 20;
 	e->opt.height = 1;
-	e->opt.color = 0x9aff9a;
+	e->opt.color.r = 125;
+	e->opt.color.g = 125;
+	e->opt.color.b = 125;
+	e->opt.color.full = 0x7d7d7d;
 	recreate_img(*e);
 }
 
@@ -83,6 +86,9 @@ int				hook_key(int keycode, t_env *e)
 		e->opt.ct = e->opt.ct_p;
 		e->opt.ct_p = e->opt.tmp;
 		e->opt.perspect = !e->opt.perspect;
+		recreate_img(*e);
 	}
+	ft_putnbr(keycode);
+	ft_putchar('\n');
 	return (1);
 }

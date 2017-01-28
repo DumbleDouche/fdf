@@ -6,7 +6,7 @@
 /*   By: rchoquer <rchoquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/11 10:35:55 by rchoquer          #+#    #+#             */
-/*   Updated: 2017/01/27 04:33:57 by rchoquer         ###   ########.fr       */
+/*   Updated: 2017/01/28 02:49:19 by rchoquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,10 @@ static t_env	setup(char *name)
 	e.opt.horiz = 0;
 	e.opt.s = 20;
 	e.opt.height = 1;
-	e.opt.color = 0x9aff9a;
+	e.opt.color.r = 125;
+	e.opt.color.g = 125;
+	e.opt.color.b = 125;
+	e.opt.color.full = 0x7d7d7d;
 	return (e);
 }
 
