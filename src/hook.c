@@ -6,17 +6,11 @@
 /*   By: rchoquer <rchoquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/26 02:32:18 by rchoquer          #+#    #+#             */
-/*   Updated: 2017/01/28 02:49:38 by rchoquer         ###   ########.fr       */
+/*   Updated: 2017/02/03 06:45:51 by rchoquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
-
-void			recreate_img(t_env e)
-{
-	mlx_clear_window(e.mlx, e.win);
-	draw(e, e.head);
-}
 
 static void		move_pos(int key, t_env *e)
 {
@@ -66,6 +60,13 @@ static void		reset_opt(t_env *e)
 	recreate_img(*e);
 }
 
+int				mouse_hook(int button, int x, int y, t_env *e)
+{
+	(void)button;
+	mlx_pixel_put(e->mlx, e->win, x, y, e->opt.color.full);
+	return (0);
+}
+
 int				hook_key(int keycode, t_env *e)
 {
 	if (keycode == 53)
@@ -88,7 +89,5 @@ int				hook_key(int keycode, t_env *e)
 		e->opt.perspect = !e->opt.perspect;
 		recreate_img(*e);
 	}
-	ft_putnbr(keycode);
-	ft_putchar('\n');
 	return (1);
 }

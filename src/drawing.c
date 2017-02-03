@@ -6,7 +6,7 @@
 /*   By: rchoquer <rchoquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/11 10:36:02 by rchoquer          #+#    #+#             */
-/*   Updated: 2017/01/28 02:24:24 by rchoquer         ###   ########.fr       */
+/*   Updated: 2017/02/03 06:46:58 by rchoquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,25 @@ void			draw(t_env e, t_point *iter)
 	}
 }
 
+int				recreate_img(t_env e)
+{
+	mlx_clear_window(e.mlx, e.win);
+	draw(e, e.head);
+	return (0);
+}
+
+int				expose_hook(t_env *e)
+{
+	recreate_img(*e);
+	return (0);
+}
+
 int				core(t_env *e, t_point *iter)
 {
 	draw(*e, iter);
 	mlx_key_hook(e->win, hook_key, &(*e));
+	mlx_mouse_hook(e->win, mouse_hook, &(*e));
+	mlx_expose_hook(e->win, expose_hook, &(*e));
 	mlx_loop(e->mlx);
 	return (1);
 }

@@ -6,7 +6,7 @@
 #    By: rchoquer <rchoquer@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/05 04:09:13 by rchoquer          #+#    #+#              #
-#    Updated: 2017/01/27 04:59:10 by rchoquer         ###   ########.fr        #
+#    Updated: 2017/02/03 05:30:15 by rchoquer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ PROJECT			=	FDF
 CC				=	gcc
 CFLAGS			=	-Werror -Wextra -Wall
 CPPFLAGS		=	-Iinclude
-OTHERFLAGS		=	-lmlx -framework OpenGL -framework AppKit
+OTHERFLAGS		=	-framework OpenGL -framework AppKit
 
 LIB_PATH		=	libft
 LIB				=	$(LIB_PATH)/libft.a
@@ -40,7 +40,7 @@ INC				=	$(addprefix $(INC_PATH)/,$(INC_NAME))
 all: $(OBJ_PATH) $(INC) $(NAME)
 
 $(NAME): $(LIB) $(OBJ)
-	@$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LIB_LINK) $(OTHERFLAGS) -g
+	@$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LIB_LINK) $(OTHERFLAGS) mlx/libmlx.a
 	@echo $(PROJECT) "  -" "\033[32mBuilt FDF\033[0m"
 
 $(LIB):

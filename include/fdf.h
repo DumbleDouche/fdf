@@ -6,14 +6,14 @@
 /*   By: rchoquer <rchoquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/11 07:06:37 by rchoquer          #+#    #+#             */
-/*   Updated: 2017/01/28 02:32:15 by rchoquer         ###   ########.fr       */
+/*   Updated: 2017/02/03 06:31:55 by rchoquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 
-# include <mlx.h>
+# include "../mlx/mlx.h"
 # include "../libft/include/libft.h"
 # include <stdlib.h>
 # include <unistd.h>
@@ -100,8 +100,10 @@ typedef struct		s_env
 }					t_env;
 
 int					hook_key(int keycode, t_env *e);
+int					mouse_hook(int button, int x, int y, t_env *e);
+int					expose_hook(t_env *e);
 int					core(t_env *e, t_point *head);
-void				recreate_img(t_env e);
+int					recreate_img(t_env e);
 void				colors(t_env *e, int key);
 void				ft_exit(char *error);
 void				draw(t_env e, t_point *iter);
