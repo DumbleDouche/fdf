@@ -6,7 +6,7 @@
 /*   By: rchoquer <rchoquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/26 02:32:18 by rchoquer          #+#    #+#             */
-/*   Updated: 2017/02/03 06:45:51 by rchoquer         ###   ########.fr       */
+/*   Updated: 2017/02/04 07:50:55 by rchoquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int				mouse_hook(int button, int x, int y, t_env *e)
 int				hook_key(int keycode, t_env *e)
 {
 	if (keycode == 53)
-		ft_exit(PROPER);
+		ft_exit(PROPER, 1);
 	else if ((keycode >= 123 && keycode <= 126)
 	|| keycode == 31 || keycode == 35)
 		move_space(keycode, &(*e));

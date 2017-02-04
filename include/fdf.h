@@ -6,7 +6,7 @@
 /*   By: rchoquer <rchoquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/11 07:06:37 by rchoquer          #+#    #+#             */
-/*   Updated: 2017/02/03 06:31:55 by rchoquer         ###   ########.fr       */
+/*   Updated: 2017/02/04 07:50:40 by rchoquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ int					expose_hook(t_env *e);
 int					core(t_env *e, t_point *head);
 int					recreate_img(t_env e);
 void				colors(t_env *e, int key);
-void				ft_exit(char *error);
+void				ft_exit(char *error, int fd);
 void				draw(t_env e, t_point *iter);
 void				drawline(t_coord origin, t_coord end, t_env e);
 void				lst_append(t_point **node, size_t x, size_t y, long z);
