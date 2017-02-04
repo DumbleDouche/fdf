@@ -6,7 +6,7 @@
 /*   By: rchoquer <rchoquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/11 10:35:55 by rchoquer          #+#    #+#             */
-/*   Updated: 2017/02/04 07:51:18 by rchoquer         ###   ########.fr       */
+/*   Updated: 2017/02/04 08:15:11 by rchoquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 void			ft_exit(char *error, int fd)
 {
-	ft_putendl_fd(error, 2);
+	ft_putendl_fd(error, fd);
 	exit(1);
 }
 
