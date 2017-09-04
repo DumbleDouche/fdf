@@ -1,6 +1,6 @@
 # FdF
 
-[![N|Solid](https://www.42.fr/logo.jpg)](https://nodesource.com/products/nsolid)
+
 Project Graphique Numéro 1
 # Objectifs
 Vous decouvrirez dans ce projet les bases de la programmation graphique, et en particulier,
